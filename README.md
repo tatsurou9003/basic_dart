@@ -3,6 +3,8 @@
 
 https://qiita.com/teradonburi/items/913fb8c311b9f2bdb1dd　　
 
+`$ dart ファイル名`で実行
+
 ・データ型　　
 
 ・定数　　

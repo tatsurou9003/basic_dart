@@ -1,7 +1,26 @@
-main() async {
-  // 非同期関数（async）、Future<データ型>で戻り値を返却する必要がある
-  // JavaScriptのPromise関数とほぼ同じ
-  Future<String> lookUpVersion() async => '1.0.0';
-  var version = await lookUpVersion(); // awaitで同期待ち（async関数内でのみ使える）
-  print(version);
+void main() {
+  test();
+  print('Next...');
 }
+
+/*
+void main() async {   // この場合、awaitでtest()が出力されるまで待つ
+  await test();
+  print('Next...');
+}
+*/
+Future<String> pickAllDocuments() {
+  String docs = ''; 
+
+  // 時間が掛かる処理
+  for (int i = 0; i < 100000; ++i) {
+    if (i == 99999) docs = 'Finish pickAllDocuments!';
+  }
+  return Future<String>.value(docs); // ファクトリメソッドの.value()でFutureオブジェクトを返す
+}
+
+void test() async {  // asyncで非同期処理の宣言を行う
+  String docs = await pickAllDocuments();  // awaitを使用しないとprint(docs)で空文字が出力されてしまう
+  print(docs);
+}
+
